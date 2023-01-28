@@ -1,6 +1,6 @@
 TOOL=quartus16
 
-URL=https://download.altera.com/akdlm/software/acdsinst/16.0.2/222/ib_tar/Quartus-lite-16.0.2.222-linux.tar
+URL=https://download.intel.com/akdlm/software/acdsinst/16.0.2/222/ib_tar/Quartus-lite-16.0.2.222-linux.tar
 INSTALLER=Quartus-lite-16.0.2.222-linux.tar
 INSTALLER_CHECKSUM=FE3C46D6AA6B3F08AEFF0666796E12EE
 

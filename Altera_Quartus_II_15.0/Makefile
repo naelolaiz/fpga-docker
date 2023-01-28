@@ -1,6 +1,6 @@
 TOOL=quartus15
 
-URL=https://download.altera.com/akdlm/software/acdsinst/15.0.2/153/ib_tar/Quartus-web-15.0.2.153-linux.tar
+URL=https://download.intel.com/akdlm/software/acdsinst/15.0.2/153/ib_tar/Quartus-web-15.0.2.153-linux.tar
 INSTALLER=Quartus-web-15.0.2.153-linux.tar
 INSTALLER_CHECKSUM=B087BFA443C97FCC9A8904FB73691AD1
 

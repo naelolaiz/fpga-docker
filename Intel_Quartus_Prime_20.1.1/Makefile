@@ -1,6 +1,6 @@
 TOOL=quartus2011
 
-URL=https://download.altera.com/akdlm/software/acdsinst/20.1std.1/720/ib_tar/Quartus-lite-20.1.1.720-linux.tar
+URL=https://download.intel.com/akdlm/software/acdsinst/20.1std.1/720/ib_tar/Quartus-lite-20.1.1.720-linux.tar
 INSTALLER=Quartus-lite-20.1.1.720-linux.tar
 CHECKSUM=0BEBCAECE9D8A03AF9A69A48ADC45634
 ECLIPSE_URL=https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/mars/2/eclipse-cpp-mars-2-linux-gtk-x86_64.tar.gz
