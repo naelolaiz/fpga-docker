@@ -3,7 +3,7 @@
  
  iCEcube2 appears to not have an unattended install mode so you must install using the GUI.
  
- Therefore, to build a docker container for iCEcube2 you'll need to follow a few steps:
+ Therefore, to build a podman container for iCEcube2 you'll need to follow a few steps:
  
  1) Run the installer with `make`. 
  

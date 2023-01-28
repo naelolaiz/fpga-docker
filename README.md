@@ -77,10 +77,10 @@ after closing the tool.
 
 ## Caveats
 
-* Your user account must have full access to docker (e.g., a member of the
-  `docker` group)
-* To enhance performance, the docker option "--ipc=host" is enabled when using
-  a local UNIX socket connection to X11. Read the docker documentation for more
+* Your user account must have full access to podman (e.g., a member of the
+  `podman` group)
+* To enhance performance, the podman option "--ipc=host" is enabled when using
+  a local UNIX socket connection to X11. Read the podman documentation for more
   information on the security implications of this.
 * Quartus builds will use a large amount of disk space during builds, upwards
   of 50GB.  The final containers are around 20GB each. Lattice
@@ -93,9 +93,9 @@ after closing the tool.
 * Outbound network connections are not restricted. If you want to apply specific 
   `iptables` rules to a container, either edit the `fpga` script in the
   `fpga-base/<operating system>` (most use the centos6 flavor) directory or create 
-  a script in `home/<tool>/.fpga-docker/startup.sh`. If you are using a local X11 
+  a script in `home/<tool>/.fpga-podman/startup.sh`. If you are using a local X11 
   server via UNIX socket you can disable network entirely by adding `--network none`
-  to the `docker run` command at the end of the `run-fpga` script.
+  to the `podman run` command at the end of the `run-fpga` script.
 
 
 ## TODO

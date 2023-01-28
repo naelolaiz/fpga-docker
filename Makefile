@@ -37,6 +37,6 @@ clean:
 	@for dir in $(ALLDIRS); do \
 		make -C $$dir clean; \
 	done
-	docker rmi $$(docker images --filter "label=com.halfmanhalftaco.fpga.temp" -q)
-	docker rmi $$(docker images --filter "label=com.halfmanhalftaco.fpga.tool" -q)
-	docker rmi $$(docker images --filter "label=com.halfmanhalftaco.fpga.base" -q)
+	podman rmi $$(podman images --filter "label=com.halfmanhalftaco.fpga.temp" -q)
+	podman rmi $$(podman images --filter "label=com.halfmanhalftaco.fpga.tool" -q)
+	podman rmi $$(podman images --filter "label=com.halfmanhalftaco.fpga.base" -q)

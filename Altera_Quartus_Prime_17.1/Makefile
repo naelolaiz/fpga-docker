@@ -14,14 +14,14 @@ ${INSTALLER}:
 	  if [ "$$SUM" != "$(CHECKSUM)" ]; then echo "Checksum doesn't match."; exit 1; fi
 
 container-image-built: $(FILES)
-	@docker rmi fpga:$(TOOL) &>/dev/null || true
-	@docker build -t fpga:$(TOOL) --build-arg "TOOL=$(TOOL)" . 
-	@docker rmi $$(docker images --filter "label=com.halfmanhalftaco.fpga.temp=1" -q)
+	@podman rmi fpga:$(TOOL) &>/dev/null || true
+	@podman build -t fpga:$(TOOL) --build-arg "TOOL=$(TOOL)" . 
+	@podman rmi $$(podman images --filter "label=com.halfmanhalftaco.fpga.temp=1" -q)
 	@touch $@
 
 .PHONY: clean
 clean:
-	docker rmi fpga:$(TOOL) >&/dev/null || true
-	-docker rmi $$(docker images --filter "label=com.halfmanhalftaco.fpga.temp=1" -q)
-	-docker rmi $$(docker images --filter "label=com.halfmanhalftaco.fpga.tool=$(TOOL)" -q)
+	podman rmi fpga:$(TOOL) >&/dev/null || true
+	-podman rmi $$(podman images --filter "label=com.halfmanhalftaco.fpga.temp=1" -q)
+	-podman rmi $$(podman images --filter "label=com.halfmanhalftaco.fpga.tool=$(TOOL)" -q)
 	rm -f container-image-built

@@ -3,7 +3,7 @@
 
 list_tools () {
     echo "Available tools:"
-    docker images --filter "label=com.halfmanhalftaco.fpga.tool" --format "{{.Tag}}" | sort
+    podman images --filter "label=com.halfmanhalftaco.fpga.tool" --format "{{.Tag}}" | sort
 }
 
 tool=$1
@@ -11,7 +11,7 @@ shift
 
 [ -z "$tool" ] && (list_tools; exit)
 
-container_id=$(docker images --filter="label=com.halfmanhalftaco.fpga.tool=$tool" --format "{{.ID}}")
+container_id=$(podman images --filter="label=com.halfmanhalftaco.fpga.tool=$tool" --format "{{.ID}}")
 if [ -z "$container_id" ]; then
 	echo "Couldn't locate an image for \"$tool\"."
 	list_tools
@@ -27,18 +27,18 @@ esac
 ### create home directory and common shared directory
 mkdir -p ./home/shared
 mkdir -p ./home/$tool
-docker_home=$(realpath ./home/$tool)
+podman_home=$(realpath ./home/$tool)
 shared=$(realpath ./home/shared)
 
 ### Create (or load) a persistent MAC address for the container
 ### necessary for some licensing schemes
-if [ -f $docker_home/.fpga-docker/ethernet ]; then
-	ethernet=$(cat $docker_home/.fpga-docker/ethernet)
+if [ -f $podman_home/.fpga-podman/ethernet ]; then
+	ethernet=$(cat $podman_home/.fpga-podman/ethernet)
 else
 	# https://stackoverflow.com/questions/42660218/bash-generate-random-mac-address-unicast
 	[ -z "$ethernet" ] && ethernet=$(hexdump -n 6 -ve '1/1 "%.2x "' /dev/random | awk -v a="2,6,a,e" -v r="$RANDOM" 'BEGIN{srand(r);}NR==1{split(a,b,",");r=int(rand()*4+1);printf "%s%s:%s:%s:%s:%s:%s\n",substr($1,0,1),b[r],$2,$3,$4,$5,$6}')
-	mkdir -p $docker_home/.fpga-docker
-	echo $ethernet > $docker_home/.fpga-docker/ethernet
+	mkdir -p $podman_home/.fpga-podman
+	echo $ethernet > $podman_home/.fpga-podman/ethernet
 fi
 
 echo "Container ethernet address is $ethernet"
@@ -53,7 +53,7 @@ fi
 username=$(whoami)
 hostname="$tool-$username"
 
-DISPLAY=$(./scripts/gen-xauth $hostname $docker_home/.Xauthority)
+DISPLAY=$(./scripts/gen-xauth $hostname $podman_home/.Xauthority)
 
 if [[ "$DISPLAY" == :* ]]; then
 	x11flags="--ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix"
@@ -64,12 +64,12 @@ else
 fi
 
 
-docker run --rm -it \
--l fpga-docker --name $hostname -h $hostname \
+podman run --rm -it \
+-l fpga-podman --name $hostname -h $hostname \
 --mac-address $ethernet \
 -e "DISPLAY=$DISPLAY" $x11flags \
 -e "FPGA_UID=$(id -u)" -e "FPGA_GID=$(id -g)" -e "FPGA_UNAME=$username" \
--v $docker_home:/home/$username \
+-v $podman_home:/home/$username \
 -v $shared:/home/$(whoami)/shared \
 --device-cgroup-rule 'c 189:* rmw' \
 -v /dev/bus/usb/003:/dev/bus/usb/003 \
