@@ -9,5 +9,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: apk update && apk add make && make
+      run: yum install -y make && make
       
