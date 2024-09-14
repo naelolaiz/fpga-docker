@@ -7,10 +7,10 @@ FILES=Dockerfile.installer Dockerfile.build license.dat ${INSTALLER}
 all: container-image-built
 
 ${ARCHIVE}:
-	curl -O http://files.latticesemi.com/iCE/iCEcube2setup_Dec_10_2020_2012_lin.zip
+	curl -LO http://files.latticesemi.com/iCE/iCEcube2setup_Dec_10_2020_2012_lin.zip
 
 ${INSTALLER}: ${ARCHIVE}
-#	curl -O http://files.latticesemi.com/iCE/iCEcube2setup_Sep_12_2017_1708.tgz
+#	curl -LO http://files.latticesemi.com/iCE/iCEcube2setup_Sep_12_2017_1708.tgz
 	unzip iCEcube2setup_Dec_10_2020_2012_lin.zip
 
 license.dat:

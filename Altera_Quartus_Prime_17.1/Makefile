@@ -9,7 +9,7 @@ FILES=$(INSTALLER) Dockerfile
 all: container-image-built
 
 ${INSTALLER}:
-	curl -O $(URL)
+	curl -LO $(URL)
 	@SUM=$$(md5sum $(INSTALLER) | awk '{print toupper($$1)}'); \
 	  if [ "$$SUM" != "$(CHECKSUM)" ]; then echo "Checksum doesn't match."; exit 1; fi
 

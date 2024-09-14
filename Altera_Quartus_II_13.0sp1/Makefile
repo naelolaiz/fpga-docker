@@ -4,7 +4,7 @@ INSTALLER=Quartus-web-13.0.1.232-linux.tar
 all: container-image-built
 
 $(INSTALLER):
-	curl -O http://download.altera.com/akdlm/software/acdsinst/13.0sp1/232/ib_tar/Quartus-web-13.0.1.232-linux.tar
+	curl -LO http://download.altera.com/akdlm/software/acdsinst/13.0sp1/232/ib_tar/Quartus-web-13.0.1.232-linux.tar
 
 container-image-built: $(INSTALLER) Dockerfile
 	@docker rmi fpga:$(TOOL) &>/dev/null || true
