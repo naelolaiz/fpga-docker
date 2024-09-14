@@ -12,12 +12,12 @@ FILES=$(INSTALLER) $(UPDATE) Dockerfile
 all: container-image-built
 
 ${INSTALLER}:
-	curl -O $(INSTALLER_URL)
+	curl -LO $(INSTALLER_URL)
 	@SUM=$$(md5sum $(INSTALLER) | awk '{print toupper($$1)}'); \
         if [ "$$SUM" != "$(INSTALLER_CHECKSUM)" ]; then echo "Installer checksum doesn't match."; exit 1; fi
 	
 ${UPDATE}:
-	curl -O $(UPDATE_URL)
+	curl -LO $(UPDATE_URL)
 	@SUM=$$(md5sum $(UPDATE) | awk '{print toupper($$1)}'); \
         if [ "$$SUM" != "$(UPDATE_CHECKSUM)" ]; then echo "Updater checksum doesn't match."; exit 1; fi	
 
