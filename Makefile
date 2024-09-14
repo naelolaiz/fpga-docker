@@ -14,9 +14,9 @@
 #TOOLS += Intel_Quartus_Prime_18.1
 #TOOLS += Intel_Quartus_Prime_19.1
 #TOOLS += Intel_Quartus_Prime_10.1
-#TOOLS += Intel_Quartus_Prime_20.1.1
-#TOOLS += Lattice_iCEcube2
-#TOOLS += Xilinx_ISE_14.7
+TOOLS += Intel_Quartus_Prime_20.1.1
+TOOLS += Lattice_iCEcube2
+TOOLS += Xilinx_ISE_14.7
 
 DIRS=fpga-base/centos6 $(TOOLS)
 
